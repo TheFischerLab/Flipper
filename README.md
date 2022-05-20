@@ -5,7 +5,7 @@ Author: Tim Stachowski, PhD and Marcus Fischer, PhD | email: tim.stachowski@stju
 If you use Flipper in your work, please cite:
 
 ### About Flipper
-Flipper is a tool used for finding side-chain conformational changes between two sets of Ringer electron density (sigma) measurements. Flipper uses a peak finding algorithm to find heighted areas of electron density that correspond to side chain conformers. First, based on this, Flipper reports on whether a residue gains or loses a conformation between two samples being compared. Second, Flipper detects if the major conformer changes (FLIP!) between the same residue in two samples through peak integration.
+Flipper is a tool used for finding side-chain conformational changes between two sets of [Ringer](https://bl831.als.lbl.gov/ringer/ringer/Documentation/ringer1.0Manual.htm#BeyondRinger) electron density (sigma) measurements. Flipper uses a peak finding algorithm to find heighted areas of electron density that correspond to side chain conformers. First, based on this, Flipper reports on whether a residue gains or loses a conformation between two samples being compared. Second, Flipper detects if the major conformer changes (FLIP!) between the same residue in two samples through peak integration.
 
 The core functions are stored in the `ringer_tools.py` module. The actual script to run Flipper is `flipper.py`. 
 
