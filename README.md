@@ -71,4 +71,4 @@ peak_finder_file1_ringer.csv - includes: (1) number of peaks, (2) peak angles, a
 peak_finder_file2_ringer.csv - dito for file2
 file1_ringer_file2_ringer_gain_loss_peaks.csv - a list of residues and the change in number of peaks between the two files (file1-file2)
 ```
-If you use the `-plot` option, which you should to check your results, you will get a plot saved with the extention `*peaks.png` which shows the Ringer measurements for each dihedral for each Residue. There is an example of this in the `examples` folder. The plot shows (1) the raw data range (black), (2) data used for integration (red) according to the chosen sigma threshold (gray), (3) and peaks detected by the algorithm (blue X's). 
+If you use the `-plot` option, which you should to check your results, you will get a plot saved with the extention `*peaks.png`. There is an example of this in the `examples` folder. The plot shows (1) the raw data range (black), (2) data used for integration (red) according to the chosen sigma threshold (gray), (3) and peaks detected by the algorithm (blue X's). 
