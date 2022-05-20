@@ -21,26 +21,39 @@ Flipper uses the standard output files from Ringer (files ending in `_ringer.csv
 ## Usage
 Flipper is simply run as:
 `python flipper.py -f1 file1_ringer.csv -f2 file2_ringer.csv`
+Flipper returns two key pieces of information:
+1. Gain/Loss in the number of peaks - this is determined by peak finding using the `find_peaks` SciPy function. Gain/loss is simply the difference in the number of peaks between matching residues in file1 minus file2. 
+2. Flips in the major/minor conformations - this is determined by integrating matching peaks and seeing if one peak is >50% in one sample and less <50% in another sample. Integration is performed using the `trapz` NumPy function. 
 
 The `examples` folder contains two example files from the manuscript. To use these just move the files into the same directory as the flipper scripts. 
 
 Options you may want to see are:
 ```
+optional arguments:
   -h, --help            show this help message and exit
-  -i1 [FILENAME1], --filename1 [FILENAME1]
+  -f1 [FILENAME1], --filename1 [FILENAME1]
                         input file #1 - must be a standard Ringer output CSV
                         with only one chain
-  -i2 [FILENAME2], --filename2 [FILENAME2]
+  -f2 [FILENAME2], --filename2 [FILENAME2]
                         input file #2 - must be a standard Ringer output CSV
                         with only one chain
   -t SIGMATHRESHOLD, --sigmathreshold SIGMATHRESHOLD
                         sigma threshold for peak finding. default = 0.3
+  -ph PEAKHEIGHT, --peakheight PEAKHEIGHT
+                        Required height of peaks. default = 0.03
+  -pp PEAKPROMINENCE, --peakprominence PEAKPROMINENCE
+                        Required prominence of peaks. default = 0.05
+  -pw PEAKWIDTH, --peakwidth PEAKWIDTH
+                        Required width of peaks. default = 1
+  -pd PEAKDISTANCE, --peakdistance PEAKDISTANCE
+                        Required minimal horizontal distance between
+                        neighboring peaks. default = 5
   -plot PLOT, --plot PLOT
                         Save individual plots showing peak finding results?
                         This is slow. default = False
 ```
 The `-t` flag controls the sigma threshold used for peakfinding. The default is 0.3. 
-The `-plot` flag controls creating and saving plots. These plots show the data range used for integration (based on the sigma threshold) and shows detected peaks by marking them with an `x`.
+The `-plot` flag controls creating and saving plots. These plots show the data range used for integration (based on the sigma threshold) and shows detected peaks by marking them with an `x`. Options controlling the peak integration follow from the `find_peaks` SciPy function and more information can found in their [documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.html). 
 
 ## Results
 As the program runs, the current status will be printed to the screen.
