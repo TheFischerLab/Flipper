@@ -28,7 +28,7 @@ from scipy.signal import find_peaks
 import argparse
 import time
 
-def peak_find(file,chi,threshold,plot):
+def peak_find(file,chi,sigma_threshold,plot,height,prominence,width,distance):
     df = pd.read_csv(file,header=None)
 
     # replaces datapoint with angles from ringer output CSV
@@ -37,7 +37,7 @@ def peak_find(file,chi,threshold,plot):
     columns = ['res','chi','rand']+list(angles)
 
     chi = chi
-    sigma_threshold = threshold
+    sigma_threshold = sigma_threshold
     plot = plot
     output = []
 
@@ -50,10 +50,10 @@ def peak_find(file,chi,threshold,plot):
             sigma_raw = df.iloc[i,3:]
             sigma_raw = np.array(sigma_raw)
             dat = np.column_stack((angles,sigma_raw))
-            dat = [(x,y) for (x,y) in dat if y >= threshold]
-            sigma_threshold = [y for (x,y) in dat]
+            dat = [(x,y) for (x,y) in dat if y >= sigma_threshold]
+            sigma_above_threshold = [y for (x,y) in dat]
             angles_cut = [x for (x,y) in dat]
-            peaks, properties = find_peaks(sigma_threshold, height=threshold,prominence=0.05,width=1,distance=5)
+            peaks, properties = find_peaks(sigma_above_threshold, height=sigma_threshold,prominence=prominence,width=width,distance=distance)
             peak_n = len(peaks)
             area = []
             lefts = []
@@ -63,7 +63,7 @@ def peak_find(file,chi,threshold,plot):
                 lefts.append(left)
                 right = properties['right_bases'][i]
                 rights.append(right)
-                data_to_int = np.column_stack([angles_cut[left:right],sigma_threshold[left:right]])
+                data_to_int = np.column_stack([angles_cut[left:right],sigma_above_threshold[left:right]])
                 angles_int = [j for (j,y) in data_to_int]
                 sigma_int = [y for (j,y) in data_to_int]
                 area.append(np.trapz(sigma_int,angles_int))

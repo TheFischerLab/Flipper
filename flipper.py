@@ -29,7 +29,7 @@ from ringer_tools import *
 CLI = argparse.ArgumentParser()
 
 CLI.add_argument(
-    '-i1',
+    '-f1',
     '--filename1',
     nargs="?",
     type=str,
@@ -38,7 +38,7 @@ CLI.add_argument(
 )
 
 CLI.add_argument(
-    '-i2',
+    '-f2',
     '--filename2',
     nargs="?",
     type=str,
@@ -53,6 +53,42 @@ CLI.add_argument(
     type=float,
     default=0.3,
     help='sigma threshold for peak finding. default = 0.3'
+)
+
+CLI.add_argument(
+    '-ph',
+    '--peakheight',
+    nargs=1,
+    type=float,
+    default=0.03,
+    help='Required height of peaks. default = 0.03'
+)
+
+CLI.add_argument(
+    '-pp',
+    '--peakprominence',
+    nargs=1,
+    type=float,
+    default=0.05,
+    help='Required prominence of peaks. default = 0.05'
+)
+
+CLI.add_argument(
+    '-pw',
+    '--peakwidth',
+    nargs=1,
+    type=int,
+    default=1,
+    help='Required width of peaks. default = 1'
+)
+
+CLI.add_argument(
+    '-pd',
+    '--peakdistance',
+    nargs=1,
+    type=int,
+    default=5,
+    help='Required minimal horizontal distance between neighboring peaks. default = 5'
 )
 
 CLI.add_argument(
@@ -71,6 +107,10 @@ A = ARGS.filename1
 B = ARGS.filename2
 C = ARGS.sigmathreshold
 D = ARGS.plot
+E = ARGS.peakheight
+F = ARGS.peakprominence
+G = ARGS.peakwidth
+H = ARGS.peakdistance
 
 #disable printing pandas warnings
 pd.options.mode.chained_assignment = None
@@ -112,7 +152,7 @@ if (D):
 chis = ['chi1','chi2','chi3','chi4']
 df1 = pd.DataFrame([])
 for i in chis:
-    tmp = peak_find(A,i,C,D)
+    tmp = peak_find(A,i,C,D,E,F,G,H)
     df1 = pd.concat([df1,tmp])
 print('Peak info from file1 saved to: '+'peak_finder_'+A)
 print(' ')
@@ -123,7 +163,7 @@ print('Finding peaks....')
 if (D):
     print('Plotting...')
 for i in chis:
-    tmp = peak_find(B,i,C,D)
+    tmp = peak_find(B,i,C,D,E,F,G,H)
     df2 = pd.concat([df2,tmp])
 print('Peak info from file2 saved to: '+'peak_finder_'+B)
 df2.to_csv('peak_finder_'+B,header=True,index=False)
