@@ -24,7 +24,7 @@ Flipper is simply run as:
 1. Gain/Loss in the number of peaks - this is determined by peak finding using the `find_peaks` SciPy function. Gain/loss is simply the difference in the number of peaks between matching residues in file1 minus file2. 
 2. Flips in the major/minor conformations - this is determined by integrating matching peaks and seeing if one peak is >50% in one sample and less <50% in another sample. Integration is performed using the `trapz` NumPy function. 
 
-The `examples` folder contains two example files from the manuscript. To use these just move the files into the same directory as the flipper scripts. 
+The `examples` folder contains two example files from the manuscript. To use these just move the files into the same directory as the Flipper scripts. 
 
 Options you may want to see are:
 ```
