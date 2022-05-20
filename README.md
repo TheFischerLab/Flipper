@@ -40,7 +40,7 @@ Options you may want to see are:
                         This is slow. default = False
 ```
 The `-t` flag controls the sigma threshold used for peakfinding. The default is 0.3. 
-The `-plot` flag controls printing plots. These plots show the data range used for integration (based on the sigma threshold) and          shows detected peaks by marking them with an `x`.
+The `-plot` flag controls creating and saving plots. These plots show the data range used for integration (based on the sigma threshold) and shows detected peaks by marking them with an `x`.
 
 ## Results
 As the program runs, the current status will be printed to the screen.
