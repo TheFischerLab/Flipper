@@ -20,8 +20,7 @@ Flipper uses the standard output files from Ringer (files ending in `_ringer.csv
 
 ## Usage
 Flipper is simply run as:
-`python flipper.py -f1 file1_ringer.csv -f2 file2_ringer.csv`
-Flipper returns two key pieces of information:
+`python flipper.py -f1 file1_ringer.csv -f2 file2_ringer.csv` and returns two key pieces of information:
 1. Gain/Loss in the number of peaks - this is determined by peak finding using the `find_peaks` SciPy function. Gain/loss is simply the difference in the number of peaks between matching residues in file1 minus file2. 
 2. Flips in the major/minor conformations - this is determined by integrating matching peaks and seeing if one peak is >50% in one sample and less <50% in another sample. Integration is performed using the `trapz` NumPy function. 
 
