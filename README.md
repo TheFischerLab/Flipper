@@ -22,8 +22,7 @@ Flipper uses the standard output files from Ringer (files ending in `_ringer.csv
 Flipper is simply run as:
 `python flipper.py -f1 file1_ringer.csv -f2 file2_ringer.csv`
 
-The `examples` folder contains two example files from the manuscript.
-
+The `examples` folder contains two example files from the manuscript. To use these just move the files into the same directory as the flipper scripts. 
 
 Options you may want to see are:
 ```
@@ -43,7 +42,6 @@ Options you may want to see are:
 The `-t` flag controls the sigma threshold used for peakfinding. The default is 0.3. 
 The `-plot` flag controls printing plots. These plots show the data range used for integration (based on the sigma threshold) and          shows detected peaks by marking them with an `x`.
 
-
 ## Results
 As the program runs, the current status will be printed to the screen.
 Flips are printed like:
@@ -60,13 +58,4 @@ Output files include:
 peak_finder_file1_ringer.csv - includes: (1) number of peaks, (2) peak angles, and (3) peak area for each residue and dihedral for each residue in file1
 peak_finder_file2_ringer.csv - dito for file2
 file1_ringer_file2_ringer_gain_loss_peaks.csv - a list of residues and the change in number of peaks between the two files (file1-file2)
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
+```
