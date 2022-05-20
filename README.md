@@ -13,7 +13,7 @@ The core functions are stored in the `ringer_tools.py` module. The actual script
 Flipper can be installed by simply cloning the git repository. 
 
 ## Requirements
-Flipper requires Python >= 3.7, NumPy, SciPy, Pandas, and matplotlib are installed. These packages are often installed by default but can installed using package managers such as [Anaconda](https://continuum.io/downloads). The current program was tested and built on Mac OS.
+Flipper requires Python >= 3.7, NumPy, SciPy, Pandas, and matplotlib to be installed. These packages are often installed by default but can installed using package managers such as [Anaconda](https://continuum.io/downloads). The current program was tested and built on Mac OS.
 
 ## Input files
 Flipper uses the standard output files from Ringer (files ending in `_ringer.csv`). Any modifications to the column positioning or addition of whitespace will most likely break Flipper. Flipper works best when the Ringer output files are broken down into separate files for each chain. For example, if your protein contains chains A and B, you should feed Flipper separate files:   `prot_chainA_ringer.csv` and `prot_chainB_ringer.csv`.
