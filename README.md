@@ -13,7 +13,7 @@ The core functions are stored in the `ringer_tools.py` module. The actual script
 Flipper can be installed by simply cloning the git repository. 
 
 ## Requirements
-Flipper requires Python >= 3.7, NumPy, SciPy, Pandas, and matplotlib to be installed. These packages are often installed by default but can installed using package managers such as [Anaconda](https://continuum.io/downloads). The current program was tested and built on Mac OS. Flipper starts from the output of [Ringer](https://bl831.als.lbl.gov/ringer/ringer/Documentation/ringer1.0Manual.htm), so you will also need to have that installed prior to using Flipper. 
+Flipper requires Python >= 3.7, NumPy, SciPy, Pandas, and matplotlib to be installed. These packages are often installed by default but can installed using package managers such as [Anaconda](https://continuum.io/downloads) or [pip](https://pip.pypa.io/en/stable/). The current program was tested and built on Mac OS. Flipper starts from the output of [Ringer](https://bl831.als.lbl.gov/ringer/ringer/Documentation/ringer1.0Manual.htm), so you will also need to have that installed prior to using Flipper. 
 
 ## Input files
 Flipper uses the standard output files from Ringer (files ending in `_ringer.csv`). Any modifications to the column positioning or addition of whitespace will most likely break Flipper. Flipper works best when the Ringer output files are broken down into separate files for each chain. For example, if your protein contains chains A and B, you should feed Flipper separate files: `prot_chainA_ringer.csv` and `prot_chainB_ringer.csv`.
@@ -22,7 +22,7 @@ Flipper uses the standard output files from Ringer (files ending in `_ringer.csv
 Flipper is simply run as:
 `python flipper.py -f1 file1_ringer.csv -f2 file2_ringer.csv` and returns two key pieces of information:
 1. Gain/Loss in the number of peaks - this is determined by peak finding using the `find_peaks` SciPy function. Gain/loss is simply the difference in the number of peaks between matching residues in file1 minus file2. 
-2. Flips in the major/minor conformations - this is determined by integrating matching peaks and seeing if one peak is >50% in one sample and less <50% in another sample. Integration is performed using the `trapz` NumPy function. This only applies to residues with unbranched sidechains at each chi (AKA dihedral) angle.  
+2. Flips in the major/minor conformation of a particular residue - this is for residues that have 2 conformations identified in #1 and is  determined by integrating matching peaks and seeing if one peak is >50% in one sample and less <50% in another sample. Integration is performed using the `trapz` NumPy function. This only applies to residues with unbranched sidechains at each chi (AKA dihedral) angle.  
 
 The `examples` folder contains two example files from the manuscript. To use these just move the files into the same directory as the Flipper scripts. 
 
@@ -71,4 +71,4 @@ Output files include:
 2. peak_finder_file2_ringer.csv - dito for file2
 3. file1_ringer_file2_ringer_gain_loss_peaks.csv - a list of residues and the change in number of peaks between the two files (file1-file2). You can recreate this information yourself using files #1 and #2. 
 ```
-If you use the `-plot` option, which you should to check your results, you will get a plot saved with the extention `*peaks.png` for each residue. There is an example of this in the `examples` folder. The plot shows (1) the raw data range (black), (2) data used for integration (red) according to the chosen sigma threshold (gray), and (3) peaks detected by the algorithm (blue X's). 
+If you use the `-plot` option, which you should to check your results but is slow, you will get a plot saved with the extention `*peaks.png` for each residue. There is an example of this in the `examples` folder. The plot shows (1) the raw data range (black), (2) data used for integration (red) according to the chosen sigma threshold (gray), and (3) peaks detected by the algorithm (blue X's). 
