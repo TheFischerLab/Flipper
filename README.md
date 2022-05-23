@@ -51,8 +51,8 @@ optional arguments:
                         Save individual plots showing peak finding results?
                         This is slow. default = False
 ```
-The `-t` flag controls the sigma threshold used for peakfinding. The default is 0.3. 
-The `-plot` flag controls creating and saving plots. These plots show the data range used for integration (based on the sigma threshold) and shows detected peaks by marking them with an `x`. An example of this is in the `examples` folder. Options controlling the peak integration follow from the `find_peaks` SciPy function and more information can found in their [documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.html). 
+The `-t` flag controls the sigma threshold used for peakfinding. The default is 0.3 based on the original Ringer [publication](https://onlinelibrary.wiley.com/doi/full/10.1002/pro.423). 
+The `-plot` flag controls creating and saving plots. These plots show the data range used for integration (based on the sigma threshold) and marks detected peaks with an `x`. An example of this is in the `examples` folder. Options controlling the peak integration follow from the `find_peaks` SciPy function and more information can found in their [documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.html). 
 
 ## Results
 As the program runs, the current status will be printed to the screen.
@@ -71,4 +71,4 @@ Output files include:
 2. peak_finder_file2_ringer.csv - dito for file2
 3. file1_ringer_file2_ringer_gain_loss_peaks.csv - a list of residues and the change in number of peaks between the two files (file1-file2). You can recreate this information yourself using files #1 and #2. 
 ```
-If you use the `-plot` option, which you should to check your results but is slow, you will get a plot saved with the extention `*peaks.png` for each residue. There is an example of this in the `examples` folder. The plot shows (1) the raw data range (black), (2) data used for integration (red) according to the chosen sigma threshold (gray), and (3) peaks detected by the algorithm (blue X's). 
+If you use the `-plot` option, which you should to check your results but is a slow process, you will get a plot saved with the extention `*peaks.png` for each residue. There is an example of this in the `examples` folder. The plot shows (1) the raw data range (black), (2) data used for integration (red) according to the chosen sigma threshold (gray), and (3) peaks detected by the algorithm (blue X's). 
