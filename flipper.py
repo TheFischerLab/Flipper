@@ -23,86 +23,12 @@
 import argparse
 import time
 import pandas as pd
-from ringer_tools import peak_find,find_flips,find_gainloss
+from ringer_tools import create_parser, peak_find,find_flips,find_gainloss
 
-CLI = argparse.ArgumentParser()
-
-CLI.add_argument(
-    '-f1',
-    '--filename1',
-    nargs="?",
-    type=str,
-    default=None,
-    help='input file #1 - must be a standard Ringer output CSV with only one chain'
-)
-
-CLI.add_argument(
-    '-f2',
-    '--filename2',
-    nargs="?",
-    type=str,
-    default=None,
-    help='input file #2 - must be a standard Ringer output CSV with only one chain'
-)
-
-CLI.add_argument(
-    '-t',
-    '--sigmathreshold',
-    nargs=1,
-    type=float,
-    default=0.3,
-    help='sigma threshold for peak finding. default = 0.3'
-)
-
-CLI.add_argument(
-    '-ph',
-    '--peakheight',
-    nargs=1,
-    type=float,
-    default=0.03,
-    help='Required height of peaks. default = 0.03'
-)
-
-CLI.add_argument(
-    '-pp',
-    '--peakprominence',
-    nargs=1,
-    type=float,
-    default=0.05,
-    help='Required prominence of peaks. default = 0.05'
-)
-
-CLI.add_argument(
-    '-pw',
-    '--peakwidth',
-    nargs=1,
-    type=int,
-    default=1,
-    help='Required width of peaks. default = 1'
-)
-
-CLI.add_argument(
-    '-pd',
-    '--peakdistance',
-    nargs=1,
-    type=int,
-    default=5,
-    help='Required minimal horizontal distance between neighboring peaks. default = 5'
-)
-
-CLI.add_argument(
-    '-p',
-    '--plot',
-    nargs=1,
-    type=str,
-    default=False,
-    help='Save individual plots showing peak finding results? This is slow. default = False'
-)
-
-
+CLI = create_parser()
 ARGS = CLI.parse_args()
 
-A = ARGS.filename1
+A = ARGS.filename
 B = ARGS.filename2
 C = ARGS.sigmathreshold
 D = ARGS.plot

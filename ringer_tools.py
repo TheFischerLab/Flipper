@@ -23,11 +23,98 @@
 
 import numpy as np
 import pandas as pd
-from scipy.signal import find_peaks
-import matplotlib.pyplot as plt
+import argparse
+
+def create_parser():
+
+    CLI = argparse.ArgumentParser()
+
+    CLI.add_argument(
+        '-f',
+        '--filename',
+        nargs="?",
+        type=str,
+        default=None,
+        help='input file'
+    )
+
+    CLI.add_argument(
+        '-f2',
+        '--filename2',
+        nargs="?",
+        type=str,
+        default=None,
+        help='input file'
+    )
+
+    CLI.add_argument(
+        '-g',
+        '--geotolerance',
+        nargs="?",
+        type=int,
+        default=30,
+        help='Tolerance for match between Ringer measured chi and ideal chi in library. Default = 30'
+    )
+
+    CLI.add_argument(
+        '-t',
+        '--sigmathreshold',
+        nargs=1,
+        type=float,
+        default=0.3,
+        help='sigma threshold for peak finding. default = 0.3'
+    )
+
+    CLI.add_argument(
+        '-ph',
+        '--peakheight',
+        nargs=1,
+        type=float,
+        default=0.03,
+        help='Required height of peaks. default = 0.03'
+    )
+
+    CLI.add_argument(
+        '-pp',
+        '--peakprominence',
+        nargs=1,
+        type=float,
+        default=0.05,
+        help='Required prominence of peaks. default = 0.05'
+    )
+
+    CLI.add_argument(
+        '-pw',
+        '--peakwidth',
+        nargs=1,
+        type=int,
+        default=1,
+        help='Required width of peaks. default = 1'
+    )
+
+    CLI.add_argument(
+        '-pd',
+        '--peakdistance',
+        nargs=1,
+        type=int,
+        default=5,
+        help='Required minimal horizontal distance between neighboring peaks. default = 5'
+    )
+
+    CLI.add_argument(
+        '-p',
+        '--plot',
+        nargs=1,
+        type=str,
+        default=False,
+        help='Save individual plots showing peak finding results? This is slow. default = False'
+    )
+
+    return CLI
 
 def peak_find(file,chi,sigma_threshold,plot,height,prominence,width,distance):
     """ Find peaks in Ringer plots """
+    from scipy.signal import find_peaks
 
     dataframe = pd.read_csv(file,header=None)
 
@@ -89,6 +176,7 @@ def peak_find(file,chi,sigma_threshold,plot,height,prominence,width,distance):
             if len(area) == 0:
                 areas_norm = 0
             if plot:
+                import matplotlib.pyplot as plt
                 plt.figure(figsize=(5,5))
                 plt.plot(angles,sigma_raw,color='black')
                 plt.plot(angles_cut,sigma_above_threshold,'red',linestyle='dotted')
