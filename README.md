@@ -1,8 +1,11 @@
 # Flipper: a tool for automatically detecting conformational changes from Ringer measurements
 
 Author: Tim Stachowski, PhD and Marcus Fischer, PhD | email: tim.stachowski@stjude.org
-#### [paper using Flipper](https://)
+#### [paper using Flipper](https://onlinelibrary.wiley.com/doi/10.1002/anie.202112919)
 If you use Flipper in your work, please cite:
+Stachowski TR, Vanarotti M, Seetharaman J, Lopez K, Fischer M.
+Water Networks Repopulate Protein-Ligand Interfaces with Temperature.
+Angew Chem Int Ed Engl. 2022 Jun 1:e202112919. doi: 10.1002/anie.202112919.
 
 ### About Flipper
 Flipper is a tool used for finding side-chain conformational changes between two sets of [Ringer](https://bl831.als.lbl.gov/ringer/ringer/Documentation/documentation.htm) electron density (sigma) measurements. Flipper uses a peak finding algorithm to find heighted areas of electron density that correspond to side chain conformers. First, based on this, Flipper reports on whether a residue gains or loses a conformation between two samples being compared. Second, Flipper detects if the major conformer changes (FLIP!) between the same residue in two samples through peak integration.

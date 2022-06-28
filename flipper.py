@@ -23,7 +23,7 @@
 import argparse
 import time
 import pandas as pd
-from ringer_tools import create_parser, peak_find,find_flips,find_gainloss
+from ringer_tools import create_parser,peak_find,find_flips,find_gainloss
 
 CLI = create_parser()
 ARGS = CLI.parse_args()
