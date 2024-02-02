@@ -117,6 +117,7 @@ def peak_find(file,chi,sigma_threshold,plot,height,prominence,width,distance):
     from scipy.signal import find_peaks
 
     dataframe = pd.read_csv(file,header=None)
+    dataframe = dataframe[dataframe[1]=='2mFo-DFc']
 
     # replaces datapoint with angles from ringer output CSV
     step=5
@@ -125,12 +126,14 @@ def peak_find(file,chi,sigma_threshold,plot,height,prominence,width,distance):
     output = []
 
     for i in range(len(dataframe)):
-        if dataframe.iloc[i,1] == chi:
-            res_n = dataframe.iloc[i,0][6:-1].strip()
+        if dataframe.iloc[i,2] == chi:
+            #res_n = dataframe.iloc[i,0][6:-1].strip()
+            res_n = [x for x in dataframe.iloc[i,0] if x.isdigit()]
+            res_n = ''.join(res_n)
             chain = dataframe.iloc[i,0][4]
             res = dataframe.iloc[i,0]
-            chi = dataframe.iloc[i,1]
-            sigma_raw = dataframe.iloc[i,3:]
+            chi = dataframe.iloc[i,2]
+            sigma_raw = dataframe.iloc[i,4:]
             sigma_raw = np.array(sigma_raw)
             dat = np.column_stack((angles,sigma_raw))
             dat = [(x,y) for (x,y) in dat if y >= sigma_threshold]

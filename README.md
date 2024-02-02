@@ -35,7 +35,7 @@ Options you may want to see are:
 ```
 optional arguments:
   -h, --help            show this help message and exit
-  -f1 [FILENAME1], --filename1 [FILENAME1]
+  -f [FILENAME1], --filename1 [FILENAME1]
                         input file #1 - must be a standard Ringer output CSV
                         with only one chain
   -f2 [FILENAME2], --filename2 [FILENAME2]
